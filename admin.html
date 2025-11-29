@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8"/>
+    <meta name="viewport"content ="width=device-width,initial-scale=1.0"/>
+    <title>admin page</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: white;
+        }
+        </style>
+        </head>
+        <body>
+            <div class="navbar">
+                <h1>Fleet Management App</h1>
+                <button onclick="logout()">logout</button>
+                <!--sidebar-->
+                <div class="sidebar">
+                   <h2> Add fleet</h2>
+                   <label> REg no of vehicle</label>
+                   <input type ="text" id="regNo" placeholder="Enter vehicle reg no"required/>
+                   <label>category</label>
+                   <select id ="category" >
+                    <option value="">select category</option>
+                    <option value="auto">auto</option>
+                    <option value="car">car</option>
+                    <option value="truck">truck</option>
+                    <option value="bus">bus</option>
+                   </select>
+                   <label>driver name</label>
+                   <input type="text" id="drivername"placeholder="enter driver name"/>
+                   <label>
+                    <input type="checkbox" id="isAvailable"/>is isAvailable
+                   </label>
+                   <button onclick="addFleet()">Add fleet</button>
+                </div>
+                <div class ="main-container">
+                    <h2>Fleet list</h2>
+                    <div class ="fleet-container"id="fleetcontainer"></div>
+                </div>
+                <script>
+                    function logout(){
+                        alert("you have been logged out");
+                        window.location.href="index.html"
+                    }
+                    function addFleet(){
+                        const regNo=document.getElementById("regNo").value.trim();
+                         const category=document.getElementById("category").value;
+                          const drivername=document.getElementById("drivername").value.trim();
+                          const isAvailable=document.getElementById("isAvailable").checked;
+                           const fleetcontainer=document.getElementById("fleetcontainer");
+                           // validation
+                           if (!regNo ||!category||!drivername){
+                            alert("please fill in all fields");
+                            return;
+                           }
+                           const card=document.createElement("div");
+                           card.className="card";
+                           card.innerHTML=`
+                           <h3>${regNo}</h3>
+                           <p> <b>  category:</b>${category}</p>
+                           <p> <b> driver:</b><span class = "driverName">${isAvailable?"Available": "unavailable"}</span></p>
+                           <button class ="update">Delete vehile</button>`;
+                           fleetcontainer.appendChild(card);
+                           document.getElementById("regNo").value="";
+                           document.getElementById("category").value= "";
+                          document.getElementById("driverName").value= "";
+                        document.getElementById("isAvailable")  .checked=false;
+                    const updateBtn=
+                card.querySelector(".update") ;
+            const changeBtn=
+        card.querySelector(".availability") ;
+    const deleteBtn=
+card.querySelector(".delete");
+updateBtn.addEventListener("click",()=>{
+    const newDriver=prompt("enter new driver name");
+    if (newDriver){
+        card.querySelector(".driverName").textcontent=newDriver;
+    }
+    });
+    changeBtn.addEventListener("click",()=>{
+    const status=
+    
+        card.querySelector(".status");status.textcontent=status.textContent==="Available"?"unavailable":"Available";
+    
+    });
+    deleteBtn.addEventListener("click",()=>{
+        if (confirm ("are you sure you want to delete this vehicle")){
+            card.remove();
+        }
+    });
+}
+    
+                </script>
+    
+        </body>
+        </html>
