@@ -65,17 +65,18 @@
 </div>
 <script>
     function validateLogin(){
-        const username=document.getElementById("email").value.trim();
+        const email=document.getElementById("email").value.trim();
         const password=document.getElementById("password").value.trim();
         const message=document.getElementById("message");
         const correctEmail="admin@gmail.com";
         const correctPassword="admin1234";
        if(email===correctEmail&& password===correctPassword){
             message.textContent="login successful";
-             message.classList.remove("error");
+             message.className="Success";
             setTimeout(() =>{window.location.href="admin.html";},1000);
            
-        }else{
+        }
+        else{
             message.textContent="wrong password";
            message.classList.add("error");
             setTimeout(() => {window.location.href="admin.html";
