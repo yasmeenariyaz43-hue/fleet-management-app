@@ -54,6 +54,34 @@
     </style>
     </head>
     <body>
-        
+        <div class="="login-container">
+        <h2>Fleet Management App</h2>
+    <input type ="text" id ="email" placeholder="Enter email"/>
+    <br />
+    <input type ="password" id ="password" placeholder="Enter password"/>
+    <br />
+    <button onclick="validateLogin()"> Login</button>
+    <p id ="message" class="message"></p>
+</div>
+<script>
+    function validateLogin(){
+        const username=document.getElementById("email").value.trim();
+        const password=document.getElementById("password").value.trim();
+        const message=document.getElementById("message");
+        const correctEmail="admin@gmail.com";
+        const correctPassword="admin1234";
+        if(email===correctEmail&& password===correctPassword){
+            message.textContent="login successful";
+            message.classList.remove("error");
+            setTimeout(() =>{window.location.href="admin.html";},1000);
+        }else{
+            message.textContent="wrong password";
+            message.classList.add("error");
+            setTimeout(() => {window.location.href="admin.html";
+                
+            }, 1000);
+        }
+    }
+</script>
     </body>
 </html>
